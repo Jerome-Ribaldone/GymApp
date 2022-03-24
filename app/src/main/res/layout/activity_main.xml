@@ -18,15 +18,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     <Button
         android:id="@+id/toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Start Rest"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 
+        <Button
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Clear"
+            android:textSize="25sp" />
+    </TableRow>
     <TextView
         android:id="@+id/display2"
         android:layout_width="match_parent"
@@ -38,19 +48,32 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Rep Complete"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
+        <Button
+            android:layout_width="168dp"
+            android:layout_height="57dp"
+            android:layout_gravity="center"
+            android:text="Reset"
+            android:textSize="25sp" />
+
+    </TableRow>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:text="Settings"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>
