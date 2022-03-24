@@ -15,8 +15,10 @@ public class GymActivity extends AppCompatActivity {
     private Handler handler;
     private boolean isRunning;
     private TextView display;
+    private TextView repDisplay;
     private Button toggle;
 
+    private int rep;
     private int speed;
 
     @Override
@@ -24,7 +26,9 @@ public class GymActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         display = findViewById(R.id.display1);
+        repDisplay = findViewById(R.id.rep);
         toggle = findViewById(R.id.toggle);
+
 
         isRunning = false;
         if (savedInstanceState == null) {
@@ -96,6 +100,23 @@ public class GymActivity extends AppCompatActivity {
     }
     private void disableStopwatch() {
         isRunning = false;
+    }
+
+    public void repAdd(View view) {
+        Button button = (Button) view;
+
+        rep += 1;
+        displayRep();
+    }
+
+    public void clearRep(View view) {
+        rep = 0;
+        displayRep();
+    }
+
+    private void displayRep() {
+        String result = "" + rep;
+        repDisplay.setText(result);
     }
 
 }

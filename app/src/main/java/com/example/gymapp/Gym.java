@@ -8,7 +8,7 @@ public class Gym {
     private int minutes, seconds;
 
     Gym() {
-        minutes = 5;
+        minutes = 1;
         seconds = 0;
 
     }
