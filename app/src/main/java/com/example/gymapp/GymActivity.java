@@ -1,7 +1,9 @@
 package com.example.gymapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,6 +17,8 @@ public class GymActivity extends AppCompatActivity {
     private TextView display;
     private Button toggle;
 
+    private int speed;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,12 +29,14 @@ public class GymActivity extends AppCompatActivity {
         isRunning = false;
         if (savedInstanceState == null) {
             gym = new Gym();
+            speed = 1000;
         } else {
             int minutes = savedInstanceState.getInt("minutes");
             int seconds = savedInstanceState.getInt("seconds");
             gym = new Gym(minutes, seconds);
             display.setText(gym.toString());
             boolean running = savedInstanceState.getBoolean("isRunning");
+            speed = savedInstanceState.getInt("speed");
             if (running) {
                 enableStopwatch();
             }
@@ -42,6 +48,7 @@ public class GymActivity extends AppCompatActivity {
         outState.putInt("minutes", gym.getMinutes());
         outState.putInt("seconds", gym.getSeconds());
         outState.putBoolean("isRunning", isRunning);
+        outState.putInt("Speed", speed);
     }
 
 
@@ -54,6 +61,24 @@ public class GymActivity extends AppCompatActivity {
             enableStopwatch();
         }
     }
+    public void settingsClicked(View view) {
+        Intent intent = new Intent(this, SettingActivity.class);
+
+        startActivityForResult(intent, SettingActivity.SETTING_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == SettingActivity.SETTING_REQUEST) {
+            if (resultCode == RESULT_OK){
+                if (data != null){
+                    speed = data.getIntExtra("speed", 1000);
+                }
+            }
+        }
+    }
 
     private void enableStopwatch() {
         isRunning = true;
@@ -64,7 +89,7 @@ public class GymActivity extends AppCompatActivity {
                 if (isRunning){
                     gym.tick();
                     display.setText(gym.toString());
-                    handler.postDelayed(this, 1000);
+                    handler.postDelayed(this, speed);
                 }
             }
         });
