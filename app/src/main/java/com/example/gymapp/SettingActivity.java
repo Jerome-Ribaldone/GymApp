@@ -10,22 +10,27 @@ import android.widget.EditText;
 public class SettingActivity extends AppCompatActivity {
 
     public static final int SETTING_REQUEST = 1234;
-    private EditText userInput;
+    private EditText userInputMinutes;
+    private EditText userInputSeconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        userInput = findViewById(R.id.userInput);
+        userInputMinutes = findViewById(R.id.userInputMinutes);
+        userInputSeconds = findViewById(R.id.userInputSeconds);
     }
 
     public void doneClicked(View view) {
-        String text =  userInput.toString();
-        int speed = Integer.parseInt(text);
+        String text =  userInputMinutes.toString();
+        int setMinute = Integer.parseInt(text);
+        String text2 =  userInputMinutes.toString();
+        int setSecond = Integer.parseInt(text2);
 
         Intent intent = new Intent();
-        intent.putExtra("speed", speed);
+        intent.putExtra("setMinute", setMinute);
+        intent.putExtra("setSecond", setSecond);
         setResult(RESULT_OK, intent);
         finish();
     }
