@@ -20,21 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
->
+        android:layout_height="wrap_content">
         <Button
             android:id="@+id/toggle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Start Rest"
-            android:textSize="25sp" />
-
-        <Button
-            android:layout_width="210dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Clear"
             android:textSize="25sp" />
     </TableRow>
     <TableRow
@@ -79,8 +71,8 @@
 
         <Button
             android:id="@+id/repClear"
-            android:layout_width="168dp"
-            android:layout_height="57dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:onClick="clearRep"
             android:text="Reset"
             android:textSize="25sp" />
