@@ -13,6 +13,7 @@ public class SettingActivity extends AppCompatActivity {
     private EditText userInputMinutes;
     private EditText userInputSeconds;
 
+//  saves user input
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,7 @@ public class SettingActivity extends AppCompatActivity {
         userInputMinutes = findViewById(R.id.userInputMinutes);
         userInputSeconds = findViewById(R.id.userInputSeconds);
     }
-
+//  Confirms user input
     public void doneClicked(View view) {
         String text =  userInputMinutes.toString();
         int setMinute = Integer.parseInt(text);

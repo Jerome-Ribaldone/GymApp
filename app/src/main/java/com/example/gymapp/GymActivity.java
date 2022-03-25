@@ -56,7 +56,7 @@ public class GymActivity extends AppCompatActivity {
         outState.putInt("Speed", speed);
     }
 
-
+//   starts timer upon button pressed
     public void toggleClicked(View view) {
         System.out.println("toggleClicked");
         if (isRunning){
@@ -66,12 +66,13 @@ public class GymActivity extends AppCompatActivity {
             enableTimer();
         }
     }
+//  opens settings upon settings click
     public void settingsClicked(View view) {
         Intent intent = new Intent(this, SettingActivity.class);
 
         startActivityForResult(intent, SettingActivity.SETTING_REQUEST);
     }
-
+//  imports settings
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -85,7 +86,7 @@ public class GymActivity extends AppCompatActivity {
             }
         }
     }
-
+// enables timer
     private void enableTimer() {
         isRunning = true;
         handler = new Handler();
@@ -99,10 +100,13 @@ public class GymActivity extends AppCompatActivity {
             }
         });
     }
+
+//    disables timer
     private void disableTimer() {
         isRunning = false;
     }
 
+// Add rep when button toggled
     public void repAdd(View view) {
         Button button = (Button) view;
 
@@ -110,11 +114,13 @@ public class GymActivity extends AppCompatActivity {
         displayRep();
     }
 
+//  Clears rep
     public void clearRep(View view) {
         rep = 0;
         displayRep();
     }
 
+//    displays rep
     private void displayRep() {
         String result = "" + rep;
         repDisplay.setText(result);

@@ -80,6 +80,7 @@
     </TableRow>
 
     <Button
+        android:id="@+id/settingsClicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
