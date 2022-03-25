@@ -20,6 +20,8 @@ public class GymActivity extends AppCompatActivity {
 
     private int rep;
     private int speed;
+    private int setMinute;
+    private int setSecond;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,6 @@ public class GymActivity extends AppCompatActivity {
         isRunning = false;
         if (savedInstanceState == null) {
             gym = new Gym();
-            speed = 1000;
         } else {
             int minutes = savedInstanceState.getInt("minutes");
             int seconds = savedInstanceState.getInt("seconds");
@@ -42,7 +43,7 @@ public class GymActivity extends AppCompatActivity {
             boolean running = savedInstanceState.getBoolean("isRunning");
             speed = savedInstanceState.getInt("speed");
             if (running) {
-                enableStopwatch();
+                enableTimer();
             }
         }
     }
@@ -59,10 +60,10 @@ public class GymActivity extends AppCompatActivity {
     public void toggleClicked(View view) {
         System.out.println("toggleClicked");
         if (isRunning){
-            disableStopwatch();
+            disableTimer();
         }
         else{
-            enableStopwatch();
+            enableTimer();
         }
     }
     public void settingsClicked(View view) {
@@ -78,13 +79,14 @@ public class GymActivity extends AppCompatActivity {
         if (resultCode == SettingActivity.SETTING_REQUEST) {
             if (resultCode == RESULT_OK){
                 if (data != null){
-                    speed = data.getIntExtra("speed", 1000);
+                    setMinute = data.getIntExtra("setMinute", 0);
+                    setSecond = data.getIntExtra("setSecond", 60);
                 }
             }
         }
     }
 
-    private void enableStopwatch() {
+    private void enableTimer() {
         isRunning = true;
         handler = new Handler();
         handler.post(new Runnable(){
@@ -93,12 +95,11 @@ public class GymActivity extends AppCompatActivity {
                 if (isRunning){
                     gym.tick();
                     display.setText(gym.toString());
-                    handler.postDelayed(this, speed);
                 }
             }
         });
     }
-    private void disableStopwatch() {
+    private void disableTimer() {
         isRunning = false;
     }
 
